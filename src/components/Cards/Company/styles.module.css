@@ -1,0 +1,59 @@
+.card {
+	width: 650px;
+	color: #0a2540;
+}
+
+.mainActions {
+	padding: 30px;
+	display: flex;
+	width: 100%;
+}
+.mainActions > :first-child {
+	margin-right: 220px;
+}
+
+.mainActions ul {
+	display: flex;
+	flex-direction: column;
+}
+.mainActions ul li {
+	display: flex;
+	align-items: center;
+	font-size: 1rem;
+	margin: 7px 0;
+}
+.mainActions ul li p {
+	margin-left: 5px;
+}
+.mainActions ul li svg {
+	color: #88add2;
+	margin-right: 5px;
+}
+
+
+
+.footer {
+	background-color: #f6f9fc;
+	width: 100%;
+	height: 100%;
+	padding: 25px 30px;
+}
+
+.footer h5 {
+	display: flex;
+	align-items: center;
+	font-size: 1rem;
+	margin-bottom: 10px;
+}
+.footer h5 svg {
+	color: #88add2;
+	margin-right: 7px;
+}
+
+.footer ul {
+	padding-left: 30px;
+	font-size: 14px;
+}
+.footer ul li {
+	margin: 5px 0;
+}

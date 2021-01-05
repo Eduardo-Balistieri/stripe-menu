@@ -1,0 +1,50 @@
+.menuWrapper {
+	pointer-events: none;
+
+	display: flex;
+	justify-content: center;
+	position: absolute;
+
+	top: calc(70px - 1px);  /* because of the border width */
+	right: 0;
+	left: 0;
+	bottom: 0;
+	
+	width: 100%;
+}
+
+
+.menuBody {
+	z-index: 10;
+	pointer-events: fill;
+}
+
+.arrow {
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	margin-top: -6px;
+	transform: rotate(45deg);
+	background-color: white;
+	border-top-left-radius: 3px;
+	transition: 0.2s;
+}
+
+
+.menuContent {
+	overflow: hidden;
+	border-radius: 10px;
+
+	width: 100%;
+	height: 100%;
+	position: relative;
+	
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+	background-color: white;
+}
+
+.card {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
