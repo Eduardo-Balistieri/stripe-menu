@@ -10,9 +10,7 @@ import CompanyCard from '../Cards/Company'
 
 interface MenuContainerProps {
 	selectedNavOption: 'products' | 'developers' | 'company' | null
-	selectedNavOptionPosition: {
-		x: number
-	}
+	selectedNavOptionPosition: { x: number }
 }
 
 const MenuContainer = ({ selectedNavOption, selectedNavOptionPosition }: MenuContainerProps) => {
@@ -41,7 +39,6 @@ const MenuContainer = ({ selectedNavOption, selectedNavOptionPosition }: MenuCon
 
 		let width: number, height: number
 
-
 		switch (selectedNavOption) {
 			case 'products':
 				if (products === null || products.current === null)
@@ -64,12 +61,20 @@ const MenuContainer = ({ selectedNavOption, selectedNavOptionPosition }: MenuCon
 			default:
 				return
 		}
-
 		containerWidth.set(width)
 		containerHeight.set(height)
 	}, [selectedNavOption, containerWidth, containerHeight])
 
-	
+
+
+	const cardProps = {
+		className: styles.card,
+		initial: { opacity: 0, x: isFirstInteraction ? 0 : -70 },
+		animate: { opacity: 1, x: 0 },
+		exit: { opacity: 0, x: isFirstInteraction ? 0 : -70 },
+		transition: { type: 'spring', stiffness: 80, damping: 14 }
+	}
+
 	return (
 		<AnimatePresence exitBeforeEnter>
 			{selectedNavOption !== null && (
@@ -79,11 +84,15 @@ const MenuContainer = ({ selectedNavOption, selectedNavOptionPosition }: MenuCon
 					initial={{ opacity: 0, rotateX: -13 }}
 					animate={{ opacity: 1, rotateX: 0 }}
 					exit={{ opacity: 0, rotateX: -13 }}
-					transition={{ duration: 0.2, ease: 'easeInOut' }}
+					transition={{ duration: 0.15, ease: 'linear' }}
 				>
 					<motion.div
 						className={styles.menuBody}
-						style={{ width: containerWidth, height: containerHeight, transition: isFirstInteraction ? '0' : '0.3s' }}
+						style={{
+							width: containerWidth,
+							height: containerHeight,
+							transition: isFirstInteraction ? '0' : '0.3s'
+						}}
 					>
 						<div
 							className={styles.arrow}
@@ -93,13 +102,7 @@ const MenuContainer = ({ selectedNavOption, selectedNavOptionPosition }: MenuCon
 						<div className={styles.menuContent}>
 							<AnimatePresence>
 								{selectedNavOption === 'products' && (
-									<motion.div
-										className={styles.card}
-										initial={{ opacity: 0, x: isFirstInteraction ? 0 : -70 }}
-										animate={{ opacity: 1, x: 0 }}
-										exit={{ opacity: 0, x: isFirstInteraction ? 0 : -70 }}
-										transition={{ type: 'spring', stiffness: 90, damping: 13 }}
-									>
+									<motion.div {...cardProps}>
 										<ProductsCard ref={products} />
 									</motion.div>
 								)}
@@ -107,13 +110,7 @@ const MenuContainer = ({ selectedNavOption, selectedNavOptionPosition }: MenuCon
 
 							<AnimatePresence>
 								{selectedNavOption === 'developers' && (
-									<motion.div
-										className={styles.card}
-										initial={{ opacity: 0, x: isFirstInteraction ? 0 : -70 }}
-										animate={{ opacity: 1, x: 0 }}
-										exit={{ opacity: 0, x: isFirstInteraction ? 0 : -70 }}
-										transition={{ type: 'spring', stiffness: 90, damping: 13 }}
-									>
+									<motion.div {...cardProps}>
 										<DevelopersCard ref={developers} />
 									</motion.div>
 								)}
@@ -121,13 +118,7 @@ const MenuContainer = ({ selectedNavOption, selectedNavOptionPosition }: MenuCon
 
 							<AnimatePresence>
 								{selectedNavOption === 'company' && (
-									<motion.div
-										className={styles.card}
-										initial={{ opacity: 0, x: isFirstInteraction ? 0 : -70 }}
-										animate={{ opacity: 1, x: 0 }}
-										exit={{ opacity: 0, x: isFirstInteraction ? 0 : -70 }}
-										transition={{ type: 'spring', stiffness: 90, damping: 13 }}
-									>
+									<motion.div {...cardProps}>
 										<CompanyCard ref={company} />
 									</motion.div>
 								)}
